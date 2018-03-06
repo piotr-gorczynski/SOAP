@@ -1,4 +1,4 @@
-server-cpp/server/*
+server-cpp/build/*
 client-cpp/build/*
 
 
