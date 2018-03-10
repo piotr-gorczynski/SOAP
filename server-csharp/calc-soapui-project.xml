@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="2b07d08c-83fb-481b-a0a9-d9c60d7e0d04" activeEnvironment="Default" name="calc" resourceRoot="" soapui-version="5.4.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="50c9fbd8-964b-4b6d-9852-4257d947f533" wsaVersion="NONE" name="BasicHttpBinding_ICalc" type="wsdl" bindingName="{http://tempuri.org/}BasicHttpBinding_ICalc" soapVersion="1_1" anonymous="optional" definition="http://localhost:62901/calcService.svc?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:62901/calcService.svc?wsdl"><con:part><con:url>http://localhost:62901/calcService.svc?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="calcService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://tempuri.org/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:62901/calcService.svc?xsd=xsd0" namespace="http://tempuri.org/"/>
+      <xsd:import schemaLocation="http://localhost:62901/calcService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICalc_add_InputMessage">
+    <wsdl:part name="parameters" element="tns:add"/>
+  </wsdl:message>
+  <wsdl:message name="ICalc_add_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ICalc_sub_InputMessage">
+    <wsdl:part name="parameters" element="tns:sub"/>
+  </wsdl:message>
+  <wsdl:message name="ICalc_sub_OutputMessage">
+    <wsdl:part name="parameters" element="tns:subResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ICalc_mul_InputMessage">
+    <wsdl:part name="parameters" element="tns:mul"/>
+  </wsdl:message>
+  <wsdl:message name="ICalc_mul_OutputMessage">
+    <wsdl:part name="parameters" element="tns:mulResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ICalc_div_InputMessage">
+    <wsdl:part name="parameters" element="tns:div"/>
+  </wsdl:message>
+  <wsdl:message name="ICalc_div_OutputMessage">
+    <wsdl:part name="parameters" element="tns:divResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ICalc_pow_InputMessage">
+    <wsdl:part name="parameters" element="tns:pow"/>
+  </wsdl:message>
+  <wsdl:message name="ICalc_pow_OutputMessage">
+    <wsdl:part name="parameters" element="tns:powResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="ICalc">
+    <wsdl:operation name="add">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICalc/add" message="tns:ICalc_add_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ICalc/addResponse" message="tns:ICalc_add_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="sub">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICalc/sub" message="tns:ICalc_sub_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ICalc/subResponse" message="tns:ICalc_sub_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="mul">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICalc/mul" message="tns:ICalc_mul_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ICalc/mulResponse" message="tns:ICalc_mul_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="div">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICalc/div" message="tns:ICalc_div_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ICalc/divResponse" message="tns:ICalc_div_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="pow">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICalc/pow" message="tns:ICalc_pow_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ICalc/powResponse" message="tns:ICalc_pow_OutputMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICalc" type="tns:ICalc">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="add">
+      <soap:operation soapAction="http://tempuri.org/ICalc/add" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sub">
+      <soap:operation soapAction="http://tempuri.org/ICalc/sub" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="mul">
+      <soap:operation soapAction="http://tempuri.org/ICalc/mul" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="div">
+      <soap:operation soapAction="http://tempuri.org/ICalc/div" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pow">
+      <soap:operation soapAction="http://tempuri.org/ICalc/pow" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="calcService">
+    <wsdl:port name="BasicHttpBinding_ICalc" binding="tns:BasicHttpBinding_ICalc">
+      <soap:address location="http://localhost:62901/calcService.svc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:62901/calcService.svc?xsd=xsd0</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tempuri.org/">
+  <xs:element name="add">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="a" type="xs:double"/>
+        <xs:element minOccurs="0" name="b" type="xs:double"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="addResult" type="xs:double"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sub">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="a" type="xs:double"/>
+        <xs:element minOccurs="0" name="b" type="xs:double"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="subResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="subResult" type="xs:double"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mul">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="a" type="xs:double"/>
+        <xs:element minOccurs="0" name="b" type="xs:double"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mulResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="mulResult" type="xs:double"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="div">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="a" type="xs:double"/>
+        <xs:element minOccurs="0" name="b" type="xs:double"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="divResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="divResult" type="xs:double"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="pow">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="a" type="xs:double"/>
+        <xs:element minOccurs="0" name="b" type="xs:double"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="powResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="powResult" type="xs:double"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost:62901/calcService.svc?xsd=xsd1</con:url><con:content><![CDATA[<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+  <xs:element name="anyType" nillable="true" type="xs:anyType"/>
+  <xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+  <xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+  <xs:element name="boolean" nillable="true" type="xs:boolean"/>
+  <xs:element name="byte" nillable="true" type="xs:byte"/>
+  <xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+  <xs:element name="decimal" nillable="true" type="xs:decimal"/>
+  <xs:element name="double" nillable="true" type="xs:double"/>
+  <xs:element name="float" nillable="true" type="xs:float"/>
+  <xs:element name="int" nillable="true" type="xs:int"/>
+  <xs:element name="long" nillable="true" type="xs:long"/>
+  <xs:element name="QName" nillable="true" type="xs:QName"/>
+  <xs:element name="short" nillable="true" type="xs:short"/>
+  <xs:element name="string" nillable="true" type="xs:string"/>
+  <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+  <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+  <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+  <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+  <xs:element name="char" nillable="true" type="tns:char"/>
+  <xs:simpleType name="char">
+    <xs:restriction base="xs:int"/>
+  </xs:simpleType>
+  <xs:element name="duration" nillable="true" type="tns:duration"/>
+  <xs:simpleType name="duration">
+    <xs:restriction base="xs:duration">
+      <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+      <xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+      <xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="guid" nillable="true" type="tns:guid"/>
+  <xs:simpleType name="guid">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:attribute name="FactoryType" type="xs:QName"/>
+  <xs:attribute name="Id" type="xs:ID"/>
+  <xs:attribute name="Ref" type="xs:IDREF"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:62901/calcService.svc</con:endpoint></con:endpoints><con:operation id="91d06be1-89e2-4c6e-8bd4-31f014fc91ec" isOneWay="false" action="http://tempuri.org/ICalc/add" name="add" bindingOperationName="add" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d748083e-c38a-46f7-87dc-e80538d42aa0" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:62901/calcService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:add>\r
+         <!--Optional:-->\r
+         <tem:a>0.5</tem:a>\r
+         <!--Optional:-->\r
+         <tem:b>0.1</tem:b>\r
+      </tem:add>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ICalc/add"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="c83ab830-209d-42e7-94de-5b518878ae36" isOneWay="false" action="http://tempuri.org/ICalc/div" name="div" bindingOperationName="div" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0e71236c-c117-4bcc-a14a-81e9e986389c" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:62901/calcService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:div>\r
+         <!--Optional:-->\r
+         <tem:a>1</tem:a>\r
+         <!--Optional:-->\r
+         <tem:b>2</tem:b>\r
+      </tem:div>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ICalc/div"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="b89848f8-ca8d-44a6-a328-38c1815fa164" isOneWay="false" action="http://tempuri.org/ICalc/mul" name="mul" bindingOperationName="mul" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d679dd0e-7eb0-41ad-ab71-a7d30c92c3a2" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:62901/calcService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:mul>\r
+         <!--Optional:-->\r
+         <tem:a>?</tem:a>\r
+         <!--Optional:-->\r
+         <tem:b>?</tem:b>\r
+      </tem:mul>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ICalc/mul"/></con:call></con:operation><con:operation id="8183aff6-3254-4c9b-a533-f236967d6c4c" isOneWay="false" action="http://tempuri.org/ICalc/pow" name="pow" bindingOperationName="pow" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="418c4410-1391-40dc-bdfe-7326d946a660" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:62901/calcService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:pow>\r
+         <!--Optional:-->\r
+         <tem:a>2</tem:a>\r
+         <!--Optional:-->\r
+         <tem:b>3</tem:b>\r
+      </tem:pow>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ICalc/pow"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="129adef4-5b23-45fb-86da-688aab2021f0" isOneWay="false" action="http://tempuri.org/ICalc/sub" name="sub" bindingOperationName="sub" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b9ddce98-d43d-403d-a764-c1fef2766522" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:62901/calcService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:sub>\r
+         <!--Optional:-->\r
+         <tem:a>2</tem:a>\r
+         <!--Optional:-->\r
+         <tem:b>0.7</tem:b>\r
+      </tem:sub>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ICalc/sub"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
