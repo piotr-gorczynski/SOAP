@@ -10,6 +10,7 @@ namespace calcWcfService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "calcService" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select calcService.svc or calcService.svc.cs at the Solution Explorer and start debugging.
+    [ServiceBehavior(IncludeExceptionDetailInFaults = true, Namespace = "http://websrv.cs.fsu.edu/~engelen/calc.wsdl")]
     public class calcService : ICalc
     {
         [return: SoapElement("result")]

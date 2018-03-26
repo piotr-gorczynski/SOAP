@@ -31,7 +31,7 @@ namespace calcWcfService
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.6.1055.0")]
     [System.Web.Services.WebServiceBindingAttribute(Name = "calc", Namespace = "http://websrv.cs.fsu.edu/~engelen/calc.wsdl")]
-    [ServiceContract]
+    [ServiceContract(Namespace = "http://websrv.cs.fsu.edu/~engelen/calc.wsdl")]
     public interface ICalc
     {
 
