@@ -9,9 +9,16 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.Marshal;
+import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlSerializer;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +34,21 @@ public class MainActivity extends AppCompatActivity {
 
     private SoapSerializationEnvelope envelope ;
 
-    private TextView textCalcResult ;
+    private EditText editCalcResult,editCalcException,editCalcRequest,editCalcResponse ;
+
+    private class calcClassResult {
+        public String calcResult;
+        public String calcException;
+        public String calcRequest;
+        public String calcResponse;
+
+        public calcClassResult(String result, String _exception, String request, String response ) {
+            calcResult=result;
+            calcException=_exception;
+            calcRequest=request;
+            calcResponse=response;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,50 +90,108 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public class MarshalDouble implements Marshal {
+        public Object readInstance(XmlPullParser parser, String namespace, String name,
+                                   PropertyInfo expected) throws IOException, XmlPullParserException {
+
+            return Double.parseDouble(parser.nextText());
+        }
+
+
+        public void register(SoapSerializationEnvelope cm) {
+            cm.addMapping(cm.xsd, "double", Double.class, this);
+
+        }
+
+
+        public void writeInstance(XmlSerializer writer, Object obj) throws IOException {
+            writer.text(obj.toString());
+        }
+    }
+
     public void Invoke(View view) {
 
         EditText editCalcURI = (EditText) findViewById(R.id.editCalcURI);
         SOAP_ADDRESS = editCalcURI.getText().toString();
 
-        textCalcResult = (TextView) findViewById(R.id.textCalcResult);
-        textCalcResult.setText("Invoke called");
+        editCalcResult = (EditText) findViewById(R.id.editCalcResult);
+        editCalcResult.setText("Invoke called");
+        editCalcException = (EditText) findViewById(R.id.editCalcException);
+        editCalcException.setText("");
+
+        editCalcRequest = (EditText) findViewById(R.id.editCalcRequest);
+        editCalcRequest.setText("");
+
+        editCalcResponse = (EditText) findViewById(R.id.editCalcResponse);
+        editCalcResponse.setText("");
+
 
         envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+        envelope.dotNet = true;
+        envelope.implicitTypes = false;
+        envelope.xsi="http://www.w3.org/2001/XMLSchema-instance";
+        envelope.encodingStyle = SoapSerializationEnvelope.XSD;
+
+
 
         SoapObject request = new SoapObject(WSDL_TARGET_NAMESPACE,OPERATION_NAME);
-        EditText editCalcValueA = (EditText) findViewById(R.id.editCalcValueA);
-        request.addProperty("a", editCalcValueA.getText().toString());
-        EditText editCalcValueB = (EditText) findViewById(R.id.editCalcValueB);
-        request.addProperty("b", editCalcValueB.getText().toString());
 
-        envelope.dotNet = true;
+        EditText editCalcValueA = (EditText) findViewById(R.id.editCalcValueA);
+        PropertyInfo piA =new PropertyInfo();
+        piA.setName("a");
+        piA.setValue(Double.parseDouble(editCalcValueA.getText().toString()));
+        piA.setType(Double.class);
+        request.addProperty(piA);
+
+        EditText editCalcValueB = (EditText) findViewById(R.id.editCalcValueB);
+        PropertyInfo piB =new PropertyInfo();
+        piB.setName("b");
+        piB.setValue(Double.parseDouble(editCalcValueB.getText().toString()));
+        piB.setType(Double.class);
+        request.addProperty(piB);
 
         envelope.setOutputSoapObject(request);
+        MarshalDouble md = new MarshalDouble();
+        md.register(envelope);
 
+ /*       EditText editCalcCall = (EditText) findViewById(R.id.editCalcCall);
+        editCalcCall.setText(envelope.bodyOut.toString());
+*/
         new CallWeb().execute();
     }
 
-    private class CallWeb extends AsyncTask<Void , Void, String> {
+    private class CallWeb extends AsyncTask<Void , Void, calcClassResult> {
 
         protected void onPreExecute() {
-            textCalcResult.setText("Calling SOAP server...");
+            editCalcResult.setText("Calling SOAP server...");
         }
 
         @Override
-        protected String doInBackground(Void... voids) {
+        protected calcClassResult doInBackground(Void... voids) {
+            String sLine="",sRequestDump="",sResponseDump="";
             try  {
+                sLine="0";
                 HttpTransportSE httpTransport = new  HttpTransportSE(SOAP_ADDRESS);
+                sLine="10";
+                httpTransport.debug = true;
+                sLine="20";
                 httpTransport.call(SOAP_ACTION, envelope);
+                sRequestDump=httpTransport.requestDump.toString();
+                sLine="30";
                 Object response = envelope.getResponse();
-                return response.toString();
-
+                sResponseDump=httpTransport.responseDump.toString();
+                sLine="40";
+                return new calcClassResult(response.toString(),"",sRequestDump,sResponseDump);
             }  catch (Exception exception)   {
-                return exception.toString();
+                return new calcClassResult("",exception.toString(),sRequestDump,sResponseDump);
             }
         }
 
-        protected void onPostExecute(String result) {
-            textCalcResult.setText(result);
+        protected void onPostExecute(calcClassResult result) {
+            editCalcResult.setText(result.calcResult);
+            editCalcException.setText(result.calcException);
+            editCalcRequest.setText(result.calcRequest);
+            editCalcResponse.setText(result.calcResponse);
         }
     }
 }

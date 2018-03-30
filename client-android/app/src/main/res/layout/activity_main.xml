@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,22 +15,12 @@
     android:layout_height="match_parent"
     tools:context="com.example.piotr.calcclient.MainActivity">
 
-    <TextView
-        android:id="@+id/textCalcResult"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="16dp"
-        android:text="(Enter parameters and press 'Invoke')"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
-
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:onClick="Invoke"
         android:text="Invoke"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +34,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textUri"
-        android:text="http://192.168.1.11:62901/calcService.svc"
+        android:text="http://websrv.cs.fsu.edu/~engelen/calcserver.cgi"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:text="Value A"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -64,7 +63,7 @@
         android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="numberDecimal"
         android:text="0.1"
@@ -76,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:text="Value B"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -86,7 +85,7 @@
         android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="numberDecimal"
         android:text="0.2"
@@ -96,15 +95,15 @@
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="240dp"
-        android:layout_height="200dp"
+        android:layout_height="184dp"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editCalcValueB">
 
         <RadioButton
             android:id="@+id/groupCalcAdd"
-            android:layout_width="match_parent"
+            android:layout_width="226dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
@@ -149,7 +148,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="100dp"
         android:text="Operation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -159,9 +158,97 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Result"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editCalcResult" />
+
+
+    <EditText
+        android:id="@+id/editCalcResult"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="8dp"
+        android:editable="false"
+        android:ems="10"
+        android:inputType="none"
+        android:selectAllOnFocus="true"
+        android:text="(Here result will be shown)"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Exception"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editCalcException" />
+
+    <EditText
+        android:id="@+id/editCalcException"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="8dp"
+        android:editable="false"
+        android:ems="10"
+        android:inputType="none"
+        android:selectAllOnFocus="true"
+        android:text="(Here exception will be shown)"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editCalcResult" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Request"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editCalcRequest" />
+
+    <EditText
+        android:id="@+id/editCalcRequest"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:editable="false"
+        android:inputType="none"
+        android:text="(Here request will be shown)"
+        android:selectAllOnFocus="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editCalcException" />
+
+    <EditText
+        android:id="@+id/editCalcResponse"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="none"
+        android:selectAllOnFocus="true"
+        android:text="(Here response will be shown)"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editCalcRequest" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Response"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editCalcResponse" />
+
+
 </android.support.constraint.ConstraintLayout>
+    </ScrollView>
