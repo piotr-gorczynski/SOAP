@@ -41,7 +41,8 @@ A commercial use license is available from Genivia, Inc., contact@genivia.com
 #include "soapcalcProxy.h"
 #include "calc.nsmap"
 
-const char server[] = "http://websrv.cs.fsu.edu/~engelen/calcserver.cgi";
+// const char server[] = "http://websrv.cs.fsu.edu/~engelen/calcserver.cgi";
+const char server[] = "http://localhost:8080/";
 
 int main(int argc, char **argv)
 { if (argc < 4)
